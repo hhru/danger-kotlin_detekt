@@ -23,6 +23,7 @@ module Danger
   #
   class DangerKotlinDetekt < Plugin
     SEVERITY_LEVELS = %w(warning error).freeze
+    REMOTE_CALL_PLUGIN_PORT = "8091"
 
     # Location of Detekt report file
     # If your Detekt task outputs to a different location, you can specify it here.
@@ -181,12 +182,13 @@ module Danger
     end
 
     def get_message(issue, filename, line)
+      # Special format of string for creating code block in Github with 'Copy' button.
       file_path = """
 
       #{filename}:#{line}
 
       """
-      open_link = "[Open in Android Studio](http://localhost:8091?message=#{filename}:#{line})"
+      open_link = "[Open in Android Studio](http://localhost:#{REMOTE_CALL_PLUGIN_PORT}?message=#{filename}:#{line})"
       show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n\n**Scroll to copy file name**\n#{file_path}\n\n#{open_link}" : issue.get("message")
     end
 
