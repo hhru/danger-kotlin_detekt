@@ -187,7 +187,7 @@ module Danger
       ```
       """
       open_link = "[Open in Android Studio](http://localhost:8091?message=#{filename}:#{line})"
-      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n**Scroll to copy file name** #{file_path}\n\n#{open_link}" : issue.get("message")
+      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n**Scroll to copy file name**\n#{file_path}\n\n#{open_link}" : issue.get("message")
     end
 
     def gradlew_exists?
