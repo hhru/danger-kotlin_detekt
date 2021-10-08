@@ -174,14 +174,14 @@ module Danger
           filename = location.get("name").gsub(dir, "")
           next unless !filtering || (target_files.include? filename)
           line = (r.get("line") || "0").to_i
-          send(level == "warning" ? "warn" : "fail", get_message(r), file: filename, line: line)
+          send(level == "warning" ? "warn" : "fail", get_message(r, filename, line), file: filename, line: line)
         end
         fail 'Detekt has found some issues' if fail_on_issues
       end
     end
 
-    def get_message(issue)
-      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")}" : issue.get("message")
+    def get_message(issue, filename, line)
+      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n#{filename}:#{line}" : issue.get("message")
     end
 
     def gradlew_exists?
