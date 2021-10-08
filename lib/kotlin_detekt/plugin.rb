@@ -183,11 +183,7 @@ module Danger
 
     def get_message(issue, filename, line)
       # Special format of string for creating code block in Github with 'Copy' button.
-      file_path = """
-
-      #{filename}:#{line}
-
-      """
+      file_path = """\n```\n#{filename}:#{line}\n```\n"""
       open_link = "[Open in Android Studio](http://localhost:#{REMOTE_CALL_PLUGIN_PORT}?message=#{filename}:#{line})"
       show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n\n**Scroll to copy file name**\n#{file_path}\n\n#{open_link}" : issue.get("message")
     end
