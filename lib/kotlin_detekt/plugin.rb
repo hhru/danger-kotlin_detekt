@@ -182,7 +182,7 @@ module Danger
 
     def get_message(issue, filename, line)
       file_path = """
-      #{filename}:#{line}
+      ```#{filename}:#{line}```
       """
       open_link = "[Open in Android Studio](http://localhost:8091?message=#{filename}:#{line})"
       show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \nScroll to copy file name#{file_path}\n\n#{open_link}" : issue.get("message")
