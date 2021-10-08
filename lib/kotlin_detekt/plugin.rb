@@ -181,7 +181,8 @@ module Danger
     end
 
     def get_message(issue, filename, line)
-      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \nhttp://localhost:8091?message=#{filename}:#{line}" : issue.get("message")
+      open_link = "[Open in Android Studio](http://localhost:8091?message=#{filename}:#{line})"
+      show_issue_source ? "#{issue.get("source")}: #{issue.get("message")} \n\n#{open_link}" : issue.get("message")
     end
 
     def gradlew_exists?
